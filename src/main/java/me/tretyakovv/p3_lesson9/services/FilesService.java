@@ -13,4 +13,6 @@ public interface FilesService {
     boolean cleanDataFile(String dataFileName);
 
     File getDataFile(String dataFileName);
+
+    String readTxtFile(String dataFileName);
 }

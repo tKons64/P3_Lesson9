@@ -27,4 +27,6 @@ public interface RecipeService {
     void externalSaveToFile();
 
     String getDataFileName();
+
+    String exportRecipeToString();
 }

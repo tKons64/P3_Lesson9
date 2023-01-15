@@ -27,6 +27,9 @@ public class RecipeServiceImpl implements RecipeService {
     @Value("${name.of.file.recipes}")
     private String dataFileName;
 
+    @Value("${name.of.file.recipestxt}")
+    private String dataFileNameTxt;
+
     private FilesService filesService;
 
     public RecipeServiceImpl(FilesService filesService) {
@@ -148,6 +151,32 @@ public class RecipeServiceImpl implements RecipeService {
         if (lasdId > 0L) {
             lasdId++;
         }
+    }
+
+    @Override
+    public String exportRecipeToString() {
+        String template = filesService.readTxtFile(dataFileNameTxt);
+        StringBuilder stringBuilder = new StringBuilder();
+        for (Recipe recipe : listRecipe.values()) {
+            StringBuilder ingredientsList = new StringBuilder();
+            for (Ingredient ingredient: recipe.getIngredients().values()) {
+                ingredientsList.append(" - ").append(ingredient).append("\n");
+            }
+
+            StringBuilder stepsList = new StringBuilder();
+            int stepsCounter = 1;
+            for (String step: recipe.getSteps()) {
+                stepsList.append(" " + stepsCounter + ":").append(step).append("\n");
+                stepsCounter++;
+            }
+            String recipeTxt = template.replace("%title%", recipe.getTitle())
+                    .replace("%preparationTime%", String.valueOf(recipe.getPreparationTime()))
+                    .replace("%ingredients%", ingredientsList.toString())
+                    .replace("%steps%", stepsList.toString());
+
+            stringBuilder.append(recipeTxt).append("\n\n");
+        }
+        return stringBuilder.toString();
     }
 }
 
