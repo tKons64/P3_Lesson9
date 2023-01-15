@@ -15,4 +15,10 @@ public class Ingredient {
 
     private String measureUnit;
 
+    @Override
+    public String toString() {
+        return title + " - " +
+                quantity + " " +
+                measureUnit ;
+    }
 }

@@ -62,6 +62,21 @@ public class FilesController {
     public ResponseEntity<InputStreamResource> downloadRecipe() throws FileNotFoundException {
         return downloadDataFile(recipeService.getDataFileName());
     }
+    @GetMapping(value = "/exportRecipeTxt")
+    public ResponseEntity<byte[]> downloadRecipeTxt() throws FileNotFoundException {
+        String recipes = recipeService.exportRecipeToString();
+        byte[] file = recipes.getBytes();
+
+        if (!recipes.isEmpty()) {
+            return ResponseEntity.ok()
+                    .contentType(MediaType.TEXT_PLAIN)
+                    .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; ")
+                    .contentLength(file.length)
+                    .body(file);
+        } else {
+            return ResponseEntity.noContent().build();
+        }
+    }
 
     @GetMapping(value = "/exportIngredient",produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<InputStreamResource> downloadIngredient() throws FileNotFoundException {

@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
@@ -16,7 +17,7 @@ public class FilesServiceImpl implements FilesService {
     private String dataFilePath;
 
     @Override
-    public boolean saveToFile(String json, String dataFileName) throws ExceptionService{
+    public boolean saveToFile(String json, String dataFileName) throws ExceptionService {
         try {
             cleanDataFile(dataFileName);
             Files.writeString(Path.of(dataFilePath, dataFileName), json);
@@ -53,4 +54,16 @@ public class FilesServiceImpl implements FilesService {
     public File getDataFile(String dataFileName) {
         return new File(dataFilePath + "/" + dataFileName);
     }
+
+    @Override
+    public String readTxtFile(String dataFileName) {
+        Path path = Path.of(dataFilePath, dataFileName);
+        try {
+            return Files.readString(path, StandardCharsets.UTF_8);
+        } catch (IOException e) {
+            e.printStackTrace();
+            throw new ExceptionService("Ошибка чтения файла - " + dataFileName + "!");
+        }
+    }
+
 }
