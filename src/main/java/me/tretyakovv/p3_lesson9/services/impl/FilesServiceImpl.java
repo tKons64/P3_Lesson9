@@ -1,6 +1,6 @@
-package me.tretyakovv.p3_lesson8.services.impl;
+package me.tretyakovv.p3_lesson9.services.impl;
 
-import me.tretyakovv.p3_lesson8.services.FilesService;
+import me.tretyakovv.p3_lesson9.services.FilesService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 

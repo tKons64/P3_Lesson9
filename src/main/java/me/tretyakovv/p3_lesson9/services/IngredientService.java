@@ -1,7 +1,7 @@
-package me.tretyakovv.p3_lesson8.services;
+package me.tretyakovv.p3_lesson9.services;
 
-import me.tretyakovv.p3_lesson8.model.Ingredient;
-import me.tretyakovv.p3_lesson8.model.Recipe;
+import me.tretyakovv.p3_lesson9.model.Ingredient;
+import me.tretyakovv.p3_lesson9.model.Recipe;
 
 import java.util.List;
 

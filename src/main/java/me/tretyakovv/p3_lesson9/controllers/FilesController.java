@@ -1,8 +1,8 @@
-package me.tretyakovv.p3_lesson8.controllers;
+package me.tretyakovv.p3_lesson9.controllers;
 
-import me.tretyakovv.p3_lesson8.services.FilesService;
-import me.tretyakovv.p3_lesson8.services.IngredientService;
-import me.tretyakovv.p3_lesson8.services.RecipeService;
+import me.tretyakovv.p3_lesson9.services.FilesService;
+import me.tretyakovv.p3_lesson9.services.IngredientService;
+import me.tretyakovv.p3_lesson9.services.RecipeService;
 import org.apache.commons.io.IOUtils;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.http.HttpHeaders;
